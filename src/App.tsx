@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './App.scss';
 import { GoodsList } from './GoodsList';
 import * as goodsAPI from './api/goods';
@@ -8,7 +8,7 @@ export const App: React.FC = () => {
   const [goods, setGoods] = useState<Good[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const handleLoadAll = () => {
+  const handleLoadAll = useCallback(() => {
     setError(null);
 
     goodsAPI
@@ -18,9 +18,9 @@ export const App: React.FC = () => {
         setError('Something went wrong');
         setGoods([]);
       });
-  };
+  }, []);
 
-  const handleLoadFirstFive = () => {
+  const handleLoadFirstFive = useCallback(() => {
     setError(null);
 
     goodsAPI
@@ -30,9 +30,9 @@ export const App: React.FC = () => {
         setError('Something went wrong');
         setGoods([]);
       });
-  };
+  }, []);
 
-  const handleLoadRed = () => {
+  const handleLoadRed = useCallback(() => {
     setError(null);
 
     goodsAPI
@@ -42,7 +42,7 @@ export const App: React.FC = () => {
         setError('Something went wrong');
         setGoods([]);
       });
-  };
+  }, []);
 
   return (
     <div className="App">
